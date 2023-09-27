@@ -1,5 +1,5 @@
 # The resume itself
-AlmondHeil-Resume.pdf
+*.pdf
 
 # Auxillary tex files
 aux/*
