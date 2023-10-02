@@ -11,4 +11,4 @@ template by [Samuel Boïté on
 Overleaf](https://www.overleaf.com/latex/templates/libre-cv/bmdtjqdhwtsz).
 
 The small amount of code that appears in this repo is licensed under the [MIT
-License](LICENSE), namely the `compile.sh` script.
+License](LICENSE), namely the Makefile.
