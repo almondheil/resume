@@ -1,11 +1,10 @@
-TODAY=$(date +%Y-%m-%d)
+all: almondHeil-Resume.pdf
 
-all: almondheil-Resume.pdf
-
-almondheil-Resume.pdf: almondheil-Resume.tex
-	@cp "almondheil-Resume.tex" "archive/archived-$TODAY.tex"
-	@pdflatex -output-directory="aux" almondheil-Resume.tex
-	@mv aux/almondheil-Resume.pdf .
+almondHeil-Resume.pdf: almondHeil-Resume.tex
+	@./archive-current.sh
+	@mkdir -p aux
+	@pdflatex -output-directory="aux" almondHeil-Resume.tex
+	@mv aux/almondHeil-Resume.pdf .
 
 clean:
-	rm almondheil-Resume.pdf
+	rm -rf almondHeil-Resume.pdf aux
