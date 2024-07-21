@@ -1,25 +1,55 @@
 % Licensed under Creative Commons CC BY 4.0
 % original template "Libre CV" by Samuel Boïté on Overleaf
 % https://www.overleaf.com/latex/templates/libre-cv/bmdtjqdhwtsz
+%
+% then I (almond) modified it to where it was almost unrecognizable
 
 \documentclass[12pt]{article}
 \usepackage[english]{babel}
+\usepackage{background}
+\usepackage{bookmark}
 \usepackage{cmbright}
 \usepackage{enumitem}
 \usepackage{fancyhdr}
-\usepackage{fontawesome5}
+\usepackage{fontawesome}
 \usepackage{geometry}
+\usepackage{graphicx}
 \usepackage{hyperref}
-\usepackage[sf]{libertine}
 \usepackage{microtype}
-\usepackage{paracol}
+\usepackage[T1]{fontenc}
+\usepackage[sf]{libertine}
 \usepackage{supertabular}
+\usepackage{tikz}
+\usepackage{tipa}
 \usepackage{titlesec}
+
 \hypersetup{colorlinks, urlcolor=black, linkcolor=black}
+\usetikzlibrary{shapes.geometric, calc}
+
+\backgroundsetup{
+  scale=1,
+  angle=0,
+  opacity=0.7,
+  placement=bottom,
+  contents={
+    \includegraphics[width=1.2\textwidth]{images/cat banner.png}}
+}
+
+% define rating command, takes in \stars{number} 0-5
+\newcommand{\rating}[2][fill=black,draw=black]{
+\begin{tikzpicture}[baseline=-0.34em,#1]
+\foreach \X in {1,...,5}
+{
+\pgfmathsetmacro{\xfill}{min(1,max(1+#2-\X,0))}
+\path (\X*.5em,0) 
+node[circle,draw, ultra thin,minimum size=0.25em,inner sep=0pt,
+path picture={\fill (path picture bounding box.south west) 
+rectangle  ([xshift=\xfill*0.722em]path picture bounding box.north west);}]{};
+}
+\end{tikzpicture}}
 
 % Geometry
-\geometry{hmargin=1.75cm, vmargin=2.5cm}
-\columnratio{0.65, 0.35}
+\geometry{left=1in, right=1in, top=1in, bottom=1in}
 \setlength\columnsep{0.05\textwidth}
 \setlength\parindent{0pt}
 \setlength{\smallskipamount}{8pt plus 3pt minus 3pt}
@@ -28,7 +58,7 @@
 
 % Style
 \pagestyle{empty}
-\titleformat{\section}{\scshape\LARGE\raggedright}{}{0em}{}[\titlerule]
+\titleformat{\section}{\LARGE\raggedright}{}{0em}{}[\titlerule]
 \titlespacing{\section}{0pt}{\bigskipamount}{\smallskipamount}
 \newcommand{\heading}[2]{\centering{\sffamily\Huge #1}\\\smallskip{\large{#2}}}
 \newcommand{\entry}[4]{{{\textbf{#1}}} \hfill #3 \\ #2 \hfill #4}
@@ -36,107 +66,141 @@
 
 \begin{document}
 
-\vspace*{\fill}
+%------------------------------------------------------------------------------%
+% THIS IS THE HEADER BIT
+%------------------------------------------------------------------------------%
 
-\begin{paracol}{2}
+\noindent % Prevents indentation at the start of the line
+\begin{minipage}[t]{0.63\textwidth}
 
-% Name & headline
-\heading{almond Heil}{%
-  Hi! I like messing around with computers \\
-	and learning more about peer education.
-}
+  % NAME AND TAGLINE
+  %----------------------------------------------------------------------------%
+  \vspace{-1.2cm}
+  \heading{almond Heil {\Large (/\textipa{"haIl}/)}}{%  
+    Hi! I like messing around with computers, \\
+    and I only {\em sometimes} break the whole OS.
+  }
+\end{minipage}%
+\hspace{0.04\textwidth}%
+\begin{minipage}[t]{0.33\textwidth}
 
-	%{Hi there! I like messing \\ around with computers \\ and peer eduction.}
-
-\switchcolumn{}
-
-% Identity card
-\vspace{0.01\textheight}
-\begin{supertabular}{ll}
-  \footnotesize\faEnvelope & \href{mailto:contact@almendra.dev}{contact@almendra.dev} \\
-  \footnotesize\faGithub & \href{https://www.github.com/almondheil}{github.com/almondheil} \\
-  \footnotesize\faIcon{linkedin} & \href{https://www.linkedin.com/in/almond-heil/}{linkedin.com/in/almond-heil/} \\
-  \footnotesize\faExternalLink* & \href{https://www.almendra.dev}{almendra.dev} \\
-\end{supertabular}
-
+  % LINKS TO OTHER PLACES
+  %----------------------------------------------------------------------------%
+  \begin{supertabular}{rl}
+    \footnotesize\faicon{envelope} & \href{mailto:contact@almendra.dev}{contact@almendra.dev} \\
+    \footnotesize\faicon{home} & \href{https://www.almendra.dev}{almendra.dev} \\
+    \footnotesize\faicon{github} & \href{https://www.github.com/almondheil}{github.com/almondheil} \\
+    \footnotesize\faicon{linkedin} & \href{https://www.linkedin.com/in/almond-heil/}{linkedin.com/in/almond-heil/} \\
+  \end{supertabular}
+\end{minipage}
 \bigskip
-\switchcolumn*
 
-\section{Education}
+%------------------------------------------------------------------------------%
+% CONTENT GOES BELOW
+%------------------------------------------------------------------------------%
 
-\entry{Grinnell College}{Computer Science, B.A.}{Grinnell, IA}{2021 -- Present}
-\begin{itemize}[noitemsep,leftmargin=3.5mm,rightmargin=0mm,topsep=6pt]
-  \item Additional coursework in theatre, linguistics, and math
-  \item 3.808 GPA
-\end{itemize}
+\noindent % Prevents indentation at the start of the line
+\begin{minipage}[t]{0.63\textwidth}
 
-\medskip
+  % EDUCATION
+  %----------------------------------------------------------------------------%
+  \section{Education}
+  \entry{Grinnell College}{Grinnell, IA}{Computer Science, B.A.}{Aug. 2021 -- May 2025 (expected)}
+  \begin{itemize}[noitemsep,leftmargin=3.5mm,rightmargin=0mm,topsep=6pt]
+    \item 3.808 GPA
+    \item Computer Science coursework including Operating Systems, Parallel Programming, Theory of Computation
+    \item Additional coursework in linguistics, pure math, and theatre
+    \item Dean's List % TODO which semesters
+  \end{itemize}
 
-\entry{Mandela International Magnet School}{Full International Baccalaureate Diploma}{Santa Fe, NM}{2017 -- 2021}
-\begin{itemize}[noitemsep,leftmargin=3.5mm,rightmargin=0mm,topsep=6pt]
-  \item Higher Level coursework in Biology, English, and Theater
-	\item 4.902 weighted GPA
-\end{itemize}
 
-\switchcolumn{}
+  % EXPERIENCE
+  %----------------------------------------------------------------------------%
+  \section{Selected Experience}
+  \entry{Grinnell College CS Department}{Teaching Assistant, CSC 161 and 213}{Grinnell, IA}{Jan 2023 -- Present}
+  \begin{itemize}[noitemsep,leftmargin=3.5mm,rightmargin=0mm,topsep=6pt]
+    \item Held weekly mentor sessions to address student uncertainties, study topics, and programming questions
+    \item Built a strong understanding of foundational and operating systems through teaching
+    \item Acted as a resource for student learning, in and out of class
+  \end{itemize}
 
-\section{Skills}
-\begin{supertabular}{rl}
-	\tableentry{\footnotesize\faCode}{C \textperiodcentered{} C++ \textperiodcentered{} Python \textperiodcentered{} Rust}{}
-	\tableentry{}{Haskell \textperiodcentered{} Java \textperiodcentered{} Racket}{}
-  \tableentry{}{}{}
+  \medskip
 
-  \tableentry{\footnotesize\faWrench}{Git \textperiodcentered{} Vim \textperiodcentered{} Slurm \textperiodcentered{} LaTeX}{}
-	\tableentry{}{MPI \textperiodcentered{} Linux \textperiodcentered{} bash \textperiodcentered{} zsh}{}
-  \tableentry{}{}{}
+  \entry{Los Alamos National Labs, HPC}{Supercomputer Institute Student}{Los Alamos, NM}{Jun-Aug 2024}
+  \begin{itemize}[noitemsep,leftmargin=3.5mm,rightmargin=0mm,topsep=6pt]
+    \item Designed and built a 10-node supercomputer cluster
+    \item Administrated cluster from the ground up, progressing from manual to automated administration methods
+    \item Explored containerizing the Cray Programming Environment, enabling faster program development for lab scientists
+      and HPC staff.
+  \end{itemize}
 
-  \tableentry{\footnotesize\faLanguage}{English \textperiodcentered{} native}{}
-  \tableentry{}{Spanish \textperiodcentered{} intermediate}{}
-\end{supertabular}
+  \medskip
 
-\switchcolumn*
+  \entry{Los Alamos National Labs, XCP}{Parallel Fellowship Student}{Los Alamos, NM}{Jun-Aug 2023}
+  \begin{itemize}[noitemsep,leftmargin=3.5mm,rightmargin=0mm,topsep=6pt]
+    \item Explored one-sided MPI communication paradigms
+    \item Developed a new transportation method for Branson, a lab testing code for radiation transport
+  \end{itemize}
+\end{minipage}%
+\hspace{0.04\textwidth}% Adjust the space between the columns here
+\begin{minipage}[t]{0.33\textwidth}
 
-\section{Selected Experience}
+  % LANGUAGES
+  %----------------------------------------------------------------------------%
+  \section{Languages}
+  \begin{supertabular}{ll}
+    \tableentry{Favorites}{C \textperiodcentered{} Python \textperiodcentered{} Rust}{spaceafter}
 
-\entry{Grinnell College CS Department}{Teaching Assistant}{Grinnell, IA}{Jan 2023 -- Present}
-\begin{itemize}[noitemsep,leftmargin=3.5mm,rightmargin=0mm,topsep=6pt]
-  \item Supported student learning in and out of class
-  \item Acted as a resource for students wanting extra help
-\end{itemize}
+    % sorted alphabetically with :sort in vim's VISUAL LINE mode
+    \tableentry{C}{\rating{5}}{}
+    \tableentry{Haskell}{\rating{2}}{}
+    \tableentry{Java}{\rating{3.5}}{}
+    \tableentry{Python}{\rating{5}}{}
+    \tableentry{Racket}{\rating{4}}{}
+    \tableentry{Rust}{\rating{3}}{}
+    \tableentry{TeX}{\rating{2.5}}{}
+    \tableentry{}{}{}
+  \end{supertabular}
 
-\medskip
+  % TOOLS
+  %----------------------------------------------------------------------------%
+  \section{Tools}
+  \begin{supertabular}{ll}
+    % general work
+    \tableentry{\footnotesize\faicon{wrench}}{Git \textperiodcentered{} Vim \textperiodcentered{} SSH \textperiodcentered{} Bash}{}
+    \tableentry{}{}{}
 
-\entry{Los Alamos National Labs}{Parallel Fellowship Student}{Los Alamos, NM}{Jun-Aug 2023}
-\begin{itemize}[noitemsep,leftmargin=3.5mm,rightmargin=0mm,topsep=6pt]
-  \item Designed and optimized one-sided MPI communication paradigms
-  \item Applied communication patterns to radiation transport problems
-\end{itemize}
+    % server specific stuff
+    \tableentry{\footnotesize\faicon{server}}{OpenCHAMI \textperiodcentered{} clush \textperiodcentered{} Ansible}{}
+    \tableentry{}{Slurm \textperiodcentered{} Powerman \textperiodcentered{} MPI \textperiodcentered{} Docker}{}
+    \tableentry{}{}{}
 
-\medskip
+    % shell commands
+    \tableentry{\footnotesize\faicon{terminal}}{grep \textperiodcentered{} sed \textperiodcentered{} awk}{}
+    \tableentry{}{seq \textperiodcentered{} tr \textperiodcentered{} tail}{}
+    \tableentry{}{}{}
 
-\entry{Serious Programming Courses Book}{Chapter Author}{Santa Fe, NM}{Jul-Aug 2021}
-\begin{itemize}[noitemsep,leftmargin=3.5mm,rightmargin=0mm,topsep=6pt]
-  \item Wrote a tutorial on Python agent-based modelling
-  \item Presented to students at various short courses
-\end{itemize}
+    % writing things
+    % note: for some wack ass reason, the hspace makes the padding better around the \LaTeX
+    \tableentry{\footnotesize\faicon{pencil}}{\LaTeX \hspace{0mm} \textperiodcentered{} Markdown}{}
+    \tableentry{}{}{}
+  \end{supertabular}
 
-\switchcolumn{}
 
-\section{Personal Interests}
-\begin{supertabular}{rl}
-  \tableentry{sysadmin}{Server maintenance}{}
-  \tableentry{}{Scripting}{}
-  \tableentry{}{OS design}{spaceafter}
-  \tableentry{theatre}{Stage management}{}
-  \tableentry{}{Lighting design}{}
-  \tableentry{}{Sound design}{spaceafter}
-  \tableentry{other}{Origami}{}
-  \tableentry{}{RPG system design}{}
-  \tableentry{}{Hiking}{}
-\end{supertabular}
-
-\end{paracol}
-
-\vspace*{\fill}
+  % HOBBIES
+  %----------------------------------------------------------------------------%
+  \section{Hobbies}
+  \begin{supertabular}{rl}
+    \tableentry{sysadmin}{Server maintenance}{}
+    \tableentry{}{Bash wizardry}{}
+    \tableentry{}{OS design}{spaceafter}
+    \tableentry{theatre}{Stage management}{}
+    \tableentry{}{Lighting design}{}
+    \tableentry{}{Sound design}{spaceafter}
+    \tableentry{art}{Origami (esp. modular)}{}
+    \tableentry{}{Pixel art}{}
+    \tableentry{}{Tabletop RPG design}{}
+  \end{supertabular}
+\end{minipage}
 
 \end{document}
