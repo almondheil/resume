@@ -1,8 +1,2 @@
-# The resume itself
-*.pdf
-
 # Auxillary tex files
 aux/*
-
-# Archived copies
-archive/*
