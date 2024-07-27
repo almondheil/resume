@@ -25,7 +25,8 @@
 \hypersetup{colorlinks, urlcolor=black, linkcolor=black}
 \usetikzlibrary{shapes.geometric, calc}
 
-% TODO - FIX THIS DAMN CAT IMAGE. LOOK INTO A BETTER WAY
+% NOTE: This cat sometimes shifts to the top of the page and idk why.
+% To fix, comment out placement=bottom, recompile, uncomment it, and recompile again.
 \backgroundsetup{
   scale=1,
   angle=0,
@@ -103,7 +104,6 @@
   %----------------------------------------------------------------------------%
   \section{Selected Experience}
   \entry{Grinnell College CS Department}{Teaching Assistant, CS 161 and 213}{Grinnell, IA}{Jan 2023 -- Present}
-  % TODO - HOW CAN I SAY "THESE CLASSES ARE X AND Y" without hitting the edge of the column?
   \begin{itemize}[noitemsep,rightmargin=0mm,topsep=0pt,leftmargin=.75cm]
     \item {\bf Built an understanding of teaching} foundational programming and operating systems
     \item Acted as a {\bf resource for student learning} during class sessions and weekly mentor sessions
@@ -116,7 +116,6 @@
     \item Designed, built, and {\bf maintained a cluster} of 10 nodes
     \item Learned to operate cluster from the ground up, progressing from {\bf manual to automated administration}
     \item Explored containerizing the Cray Programming Environment for the Programming Environments team
-      % TODO - right now this point has no bolds, figure out how to rephrase and add some
   \end{itemize}
 
   \medskip
@@ -141,7 +140,6 @@
   %----------------------------------------------------------------------------%
   \section{Technical Skills}
   \begin{tabular}{ll}
-    % TODO - REWORK THIS SECTION A GOOD AMOUNT.
     % server specific stuff
     \tableentry{\footnotesize\faicon{server}}{Ansible \textperiodcentered{} OpenCHAMI}{}
     \tableentry{}{Slurm \textperiodcentered{} MPI \textperiodcentered{} Docker}{}
@@ -181,10 +179,6 @@
   %----------------------------------------------------------------------------%
   \section{Hobbies}
   \begin{tabular}{rl}
-    % TODO: MOVE THESE INTO A NEW SKILLS \section
-    % \tableentry{sysadmin}{Server maintenance}{}
-    % \tableentry{}{Bash wizardry}{}
-    % \tableentry{}{OS design}{spaceafter}
     \tableentry{theatre}{Stage management}{}
     \tableentry{}{Sound design}{spaceafter}
     \tableentry{art}{Origami (esp. modular)}{}
