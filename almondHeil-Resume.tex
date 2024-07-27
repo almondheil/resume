@@ -18,7 +18,6 @@
 \usepackage{microtype}
 \usepackage[T1]{fontenc}
 \usepackage[sf]{libertine}
-\usepackage{supertabular}
 \usepackage{tikz}
 \usepackage{tipa}
 \usepackage{titlesec}
@@ -26,6 +25,7 @@
 \hypersetup{colorlinks, urlcolor=black, linkcolor=black}
 \usetikzlibrary{shapes.geometric, calc}
 
+% TODO - FIX THIS DAMN CAT IMAGE. LOOK INTO A BETTER WAY
 \backgroundsetup{
   scale=1,
   angle=0,
@@ -34,19 +34,6 @@
   contents={
     \includegraphics[width=1.2\textwidth]{images/cat banner.png}}
 }
-
-% define rating command, takes in \stars{number} 0-5
-\newcommand{\rating}[2][fill=black,draw=black]{
-\begin{tikzpicture}[baseline=-0.34em,#1]
-\foreach \X in {1,...,5}
-{
-\pgfmathsetmacro{\xfill}{min(1,max(1+#2-\X,0))}
-\path (\X*.5em,0) 
-node[circle,draw, ultra thin,minimum size=0.25em,inner sep=0pt,
-path picture={\fill (path picture bounding box.south west) 
-rectangle  ([xshift=\xfill*0.722em]path picture bounding box.north west);}]{};
-}
-\end{tikzpicture}}
 
 % Geometry
 \geometry{left=1in, right=1in, top=1in, bottom=1in}
@@ -62,6 +49,7 @@ rectangle  ([xshift=\xfill*0.722em]path picture bounding box.north west);}]{};
 \titlespacing{\section}{0pt}{\bigskipamount}{\smallskipamount}
 \newcommand{\heading}[2]{\centering{\sffamily\Huge #1}\\\smallskip{\large{#2}}}
 \newcommand{\entry}[4]{{{\textbf{#1}}} \hfill #3 \\ #2 \hfill #4}
+\newcommand{\lineentry}[2]{{{\textbf{#1}}} \hfill #2}
 \newcommand{\tableentry}[3]{\textsc{#1} & #2\expandafter\ifstrequal\expandafter{#3}{}{\\}{\\[6pt]}}
 
 \begin{document}
@@ -75,10 +63,8 @@ rectangle  ([xshift=\xfill*0.722em]path picture bounding box.north west);}]{};
 
   % NAME AND TAGLINE
   %----------------------------------------------------------------------------%
-  \vspace{-1.2cm}
   \heading{almond Heil {\Large (/\textipa{"haIl}/)}}{%  
-    Hi! I like messing around with computers, \\
-    and I only {\em sometimes} break the whole OS.
+    I'm most interested in server maintenance and making user-facing utilities, and looking for a post-bachelor's position.
   }
 \end{minipage}%
 \hspace{0.04\textwidth}%
@@ -86,12 +72,12 @@ rectangle  ([xshift=\xfill*0.722em]path picture bounding box.north west);}]{};
 
   % LINKS TO OTHER PLACES
   %----------------------------------------------------------------------------%
-  \begin{supertabular}{rl}
-    \footnotesize\faicon{envelope} & \href{mailto:contact@almendra.dev}{contact@almendra.dev} \\
-    \footnotesize\faicon{home} & \href{https://www.almendra.dev}{almendra.dev} \\
-    \footnotesize\faicon{github} & \href{https://www.github.com/almondheil}{github.com/almondheil} \\
-    \footnotesize\faicon{linkedin} & \href{https://www.linkedin.com/in/almond-heil/}{linkedin.com/in/almond-heil/} \\
-  \end{supertabular}
+  \vspace{0cm} % listen idk why but this aligns it way better
+  \begin{tabular}{ll}
+    \footnotesize\faicon{envelope} & \href{mailto:contact@almendra.dev}{\underline{contact@almendra.dev}} \\
+    \footnotesize\faicon{home} & \href{https://www.almendra.dev}{\underline{almendra.dev}} \\
+    \footnotesize\faicon{github} & \href{https://www.github.com/almondheil}{\underline{github.com/almondheil}} \\
+  \end{tabular}
 \end{minipage}
 \bigskip
 
@@ -106,100 +92,106 @@ rectangle  ([xshift=\xfill*0.722em]path picture bounding box.north west);}]{};
   %----------------------------------------------------------------------------%
   \section{Education}
   \entry{Grinnell College}{Grinnell, IA}{Computer Science, B.A.}{Aug. 2021 -- May 2025 (expected)}
-  \begin{itemize}[noitemsep,leftmargin=3.5mm,rightmargin=0mm,topsep=6pt]
+  \begin{itemize}[noitemsep,rightmargin=0mm,topsep=0pt,leftmargin=.75cm]
     \item 3.808 GPA
-    \item Computer Science coursework including Operating Systems, Parallel Programming, Theory of Computation
-    \item Additional coursework in linguistics, pure math, and theatre
-    \item Dean's List % TODO which semesters
+    \item Coursework including Operating Systems, Parallel Programming, and Theory of Computation
+    \item Dean's List F21, F22, S23, F23, and S24 semesters
   \end{itemize}
-
+  \vspace{-15pt} % compensate for the after-paragraph indent
 
   % EXPERIENCE
   %----------------------------------------------------------------------------%
   \section{Selected Experience}
-  \entry{Grinnell College CS Department}{Teaching Assistant, CSC 161 and 213}{Grinnell, IA}{Jan 2023 -- Present}
-  \begin{itemize}[noitemsep,leftmargin=3.5mm,rightmargin=0mm,topsep=6pt]
-    \item Held weekly mentor sessions to address student uncertainties, study topics, and programming questions
-    \item Built a strong understanding of foundational and operating systems through teaching
-    \item Acted as a resource for student learning, in and out of class
+  \entry{Grinnell College CS Department}{Teaching Assistant, CS 161 and 213}{Grinnell, IA}{Jan 2023 -- Present}
+  % TODO - HOW CAN I SAY "THESE CLASSES ARE X AND Y" without hitting the edge of the column?
+  \begin{itemize}[noitemsep,rightmargin=0mm,topsep=0pt,leftmargin=.75cm]
+    \item {\bf Built an understanding of teaching} foundational programming and operating systems
+    \item Acted as a {\bf resource for student learning} during class sessions and weekly mentor sessions
   \end{itemize}
 
   \medskip
 
-  \entry{Los Alamos National Labs, HPC}{Supercomputer Institute Student}{Los Alamos, NM}{Jun-Aug 2024}
-  \begin{itemize}[noitemsep,leftmargin=3.5mm,rightmargin=0mm,topsep=6pt]
-    \item Designed and built a 10-node supercomputer cluster
-    \item Administrated cluster from the ground up, progressing from manual to automated administration methods
-    \item Explored containerizing the Cray Programming Environment, applicable to many aspects of work at the Lab
+  \entry{Los Alamos National Labs, HPC-DO}{Supercomputer Institute Student}{Los Alamos, NM}{Jun-Aug 2024}
+  \begin{itemize}[noitemsep,rightmargin=0mm,topsep=0pt,leftmargin=.75cm]
+    \item Designed, built, and {\bf maintained a cluster} of 10 nodes
+    \item Learned to operate cluster from the ground up, progressing from {\bf manual to automated administration}
+    \item Explored containerizing the Cray Programming Environment for the Programming Environments team
+      % TODO - right now this point has no bolds, figure out how to rephrase and add some
   \end{itemize}
 
   \medskip
 
-  \entry{Los Alamos National Labs, XCP}{Parallel Fellowship Student}{Los Alamos, NM}{Jun-Aug 2023}
-  \begin{itemize}[noitemsep,leftmargin=3.5mm,rightmargin=0mm,topsep=6pt]
-    \item Explored one-sided MPI communication paradigms
-    \item Developed a new transportation method for Branson, a lab testing code for radiation transport
+  \entry{Los Alamos National Labs, XCP-DO}{Parallel Fellowship Student}{Los Alamos, NM}{Jun-Aug 2023}
+  \begin{itemize}[noitemsep,rightmargin=0mm,topsep=0pt,leftmargin=.75cm]
+    \item Explored {\bf one-sided MPI} communication paradigms
+    \item {\bf Developed a new algorithm} for particle transport in Branson, a lab testing code for radiation transport
+  \end{itemize}
+
+  \medskip
+
+  \entry{Los Alamos National Labs, T-6}{Computational Biology Undergrad Intern}{Los Alamos, NM}{Jun-Sep 2022}
+  \begin{itemize}[noitemsep,rightmargin=0mm,topsep=0pt,leftmargin=.75cm]
+    \item Studied {\bf inferring HIV infection times} based on phylogenetic trees
   \end{itemize}
 \end{minipage}%
 \hspace{0.04\textwidth}% Adjust the space between the columns here
 \begin{minipage}[t]{0.33\textwidth}
 
-  % LANGUAGES
+  % TECHNICAL SKILLS
   %----------------------------------------------------------------------------%
-  \section{Languages}
-  \begin{supertabular}{ll}
-    \tableentry{Favorites}{C \textperiodcentered{} Python \textperiodcentered{} Rust}{spaceafter}
-
-    % sorted alphabetically with :sort in vim's VISUAL LINE mode
-    \tableentry{C}{\rating{5}}{}
-    \tableentry{Haskell}{\rating{2}}{}
-    \tableentry{Java}{\rating{3.5}}{}
-    \tableentry{Python}{\rating{5}}{}
-    \tableentry{Racket}{\rating{4}}{}
-    \tableentry{Rust}{\rating{3}}{}
-    \tableentry{TeX}{\rating{2.5}}{}
-    \tableentry{}{}{}
-  \end{supertabular}
-
-  % TOOLS
-  %----------------------------------------------------------------------------%
-  \section{Tools}
-  \begin{supertabular}{ll}
-    % general work
-    \tableentry{\footnotesize\faicon{wrench}}{Git \textperiodcentered{} Vim \textperiodcentered{} SSH \textperiodcentered{} Bash}{}
-    \tableentry{}{}{}
-
+  \section{Technical Skills}
+  \begin{tabular}{ll}
+    % TODO - REWORK THIS SECTION A GOOD AMOUNT.
     % server specific stuff
-    \tableentry{\footnotesize\faicon{server}}{OpenCHAMI \textperiodcentered{} clush \textperiodcentered{} Ansible}{}
-    \tableentry{}{Slurm \textperiodcentered{} Powerman \textperiodcentered{} MPI \textperiodcentered{} Docker}{}
+    \tableentry{\footnotesize\faicon{server}}{Ansible \textperiodcentered{} OpenCHAMI}{}
+    \tableentry{}{Slurm \textperiodcentered{} MPI \textperiodcentered{} Docker}{}
     \tableentry{}{}{}
 
-    % shell commands
-    \tableentry{\footnotesize\faicon{terminal}}{grep \textperiodcentered{} sed \textperiodcentered{} awk}{}
-    \tableentry{}{seq \textperiodcentered{} tr \textperiodcentered{} tail}{}
+    % sort of, personal computing vibe.
+    \tableentry{\footnotesize\faicon{wrench}}{Git \textperiodcentered{} Bash \textperiodcentered{} Vim \textperiodcentered{} SSH}{}
     \tableentry{}{}{}
 
-    % writing things
-    % note: for some wack ass reason, the hspace makes the padding better around the \LaTeX
-    \tableentry{\footnotesize\faicon{pencil}}{\LaTeX \hspace{0mm} \textperiodcentered{} Markdown}{}
+    % programming languages
+    \tableentry{\footnotesize\faicon{code}}{C \textperiodcentered{} Python \textperiodcentered{} Rust}{}
+    \tableentry{}{Racket \textperiodcentered{} Haskell \textperiodcentered{} Java}{}
     \tableentry{}{}{}
-  \end{supertabular}
+  \end{tabular}
+
+  % PROJECTS
+  %----------------------------------------------------------------------------%
+  \section{Favorite Projects}
+
+  \lineentry{give-take}{Grinnell}
+  \begin{list}{}{\leftmargin=.25cm\rightmargin=0pt}
+    \item { User-to-user file transfer} built for school CS network
+    \item Inspired by `give' utility on Los Alamos National Lab systems
+  \end{list}
+  
+  \lineentry{ftag}{Personal}
+  \begin{list}{}{\leftmargin=.25cm\rightmargin=0pt}
+    \item Arbitrary { file tagging} intended for photo libraries
+    \item Maintains a small database of associations
+  \end{list}
+
+  More at \href{https://www.github.com/almondheil}{\underline{github.com/almondheil}}
+  \vspace{-30pt} % compensate for the after-paragraph indent
 
 
   % HOBBIES
   %----------------------------------------------------------------------------%
   \section{Hobbies}
-  \begin{supertabular}{rl}
-    \tableentry{sysadmin}{Server maintenance}{}
-    \tableentry{}{Bash wizardry}{}
-    \tableentry{}{OS design}{spaceafter}
+  \begin{tabular}{rl}
+    % TODO: MOVE THESE INTO A NEW SKILLS \section
+    % \tableentry{sysadmin}{Server maintenance}{}
+    % \tableentry{}{Bash wizardry}{}
+    % \tableentry{}{OS design}{spaceafter}
     \tableentry{theatre}{Stage management}{}
-    \tableentry{}{Lighting design}{}
     \tableentry{}{Sound design}{spaceafter}
     \tableentry{art}{Origami (esp. modular)}{}
     \tableentry{}{Pixel art}{}
-    \tableentry{}{Tabletop RPG design}{}
-  \end{supertabular}
+    \tableentry{}{Tabletop roleplaying}{}
+    \tableentry{}{game (TTRPG) design}{}
+  \end{tabular}
 \end{minipage}
 
 \end{document}
