@@ -34,12 +34,12 @@
   opacity=0.7,
   placement=bottom,
   contents={
-    \includegraphics[width=1.2\textwidth]{images/cat banner.png}
+    \includegraphics[width=\textwidth]{images/cat banner.png}
   }
 }
 
 % Geometry
-\geometry{left=1in, right=1in, top=1in, bottom=1in}
+\geometry{left=0.5in, right=0.5in, top=1in, bottom=0.5in}
 \setlength\columnsep{0.05\textwidth}
 \setlength\parindent{0pt}
 \setlength{\smallskipamount}{8pt plus 3pt minus 3pt}
@@ -66,10 +66,9 @@
 
   % NAME AND TAGLINE
   %----------------------------------------------------------------------------%
-  \heading{almond Heil {\Large (/\textipa{"haIl}/)}}{%  
-    I'm interested in server maintenance and
-    developing user-facing utilities, and looking
-    for a post-bachelor's position.
+  \heading{Almond Heil {\Large (/\textipa{"haIl}/)}}{%  
+    I'm a post-bachelor on the Platforms team,
+    and am looking into long-term employment at the Lab. 
   }
 \end{minipage}%
 \hspace{0.04\textwidth}%
@@ -96,36 +95,37 @@
   % EDUCATION
   %----------------------------------------------------------------------------%
   \section{Education}
-  \entry{Grinnell College}{Grinnell, IA}{Computer Science, B.A.}{Aug. 2021 -- May 2025 (expected)}
+  \entry{Grinnell College}{Grinnell, IA}{Computer Science, B.A.}{Aug 2021-May 2025}
   \begin{itemize}[noitemsep,rightmargin=0mm,topsep=0pt,leftmargin=.75cm]
-    \item 3.870 GPA, 4.000 Major GPA
+    \item 3.86 GPA, 4.00 Major GPA
     \item Coursework including Operating Systems, Parallel Programming, and Programming Language Theory
-    \item Dean's List F21, F22, S23, F23, and S24 semesters
+    %\item Dean's List F21, F22, S23, F23, and S24 semesters
   \end{itemize}
   \vspace{-15pt} % compensate for the after-paragraph indent
 
   % EXPERIENCE
   %----------------------------------------------------------------------------%
-  \section{Selected Experience}
-  \entry{Grinnell College CS Department}{Teaching Assistant, various courses}{Grinnell, IA}{Jan 2023 -- Present}
+  \section{Experience}
+  \entry{Los Alamos National Labs, HPC-OPS}{Platforms Postbacc Intern}{Los Alamos, NM}{Aug 2024-Present}
   \begin{itemize}[noitemsep,rightmargin=0mm,topsep=0pt,leftmargin=.75cm]
-    \item {\bf Built an understanding of teaching} by mentoring both introductory and advanced CS courses
+	  \item Contributed to \textbf{OpenCHAMI}, a novel cluster manager, with a focus on \textbf{production readiness}
+    \item Built skills in \textbf{Gitlab Pipelines} and \textbf{OS image builds}
   \end{itemize}
 
   \medskip
 
-  \entry{Los Alamos National Labs, HPC-OPS}{Systems Undergrad Intern}{Remote}{Aug 2024-Present}
+  \entry{Grinnell College CS Department}{Teaching Assistant, various courses}{Grinnell, IA}{Jan 2023-Aug 2025}
   \begin{itemize}[noitemsep,rightmargin=0mm,topsep=0pt,leftmargin=.75cm]
-    \item Contributed to the development of {\bf Ochami}, a novel cluster \bf{management infrastructure}
+	  \item Gained an \textbf{understanding of mentoring} as a TA both introductory and advanced CS courses
   \end{itemize}
 
   \medskip
 
   \entry{Los Alamos National Labs, HPC-DO}{Supercomputer Institute Student}{Los Alamos, NM}{Jun-Aug 2024}
   \begin{itemize}[noitemsep,rightmargin=0mm,topsep=0pt,leftmargin=.75cm]
-    \item Designed, built, and {\bf maintained a cluster} of 10 nodes
-    \item Learned to operate cluster from the ground up, progressing from {\bf manual to automated administration}
-    \item Explored containerizing the Cray Programming Environment for the Programming Environments team
+    \item \textbf{Administrated} a 10-node cluster
+    \item Learned basics of \textbf{OpenCHAMI, Ansible,} and other \textbf{cluster management tools}
+    \item Researched \textbf{Cray Programming Environment Containerization}
   \end{itemize}
 
   \medskip
@@ -150,8 +150,8 @@
   \section{Technical Skills}
   \begin{tabular}{ll}
     % server specific stuff
-    \tableentry{\footnotesize\faicon{server}}{Linux \textperiodcentered{} Ansible \textperiodcentered{} Slurm}{}
-    \tableentry{}{Ochami \textperiodcentered{} Docker \textperiodcentered{} MPI}{}
+    \tableentry{\footnotesize\faicon{server}}{Linux \textperiodcentered{} Ansible \textperiodcentered{} CI/CD}{}
+    \tableentry{}{OpenCHAMI \textperiodcentered{} Containers}{}
   \end{tabular}
   \smallskip
 
@@ -163,16 +163,16 @@
 
   \begin{tabular}{ll}
     % programming languages
-    \tableentry{\footnotesize\faicon{code}}{C \textperiodcentered{} Python \textperiodcentered{} Rust}{}
-    \tableentry{}{Racket \textperiodcentered{} Haskell \textperiodcentered{} Java}{}
+    \tableentry{\footnotesize\faicon{code}}{Go \textperiodcentered{} Python \textperiodcentered{} C}{}
+    \tableentry{}{Rust \textperiodcentered{} Lisp \textperiodcentered{} Haskell}{}
   \end{tabular}
   \smallskip
 
   % PROJECTS
   %----------------------------------------------------------------------------%
-  \section{Favorite Projects}
+  \section{Projects}
 
-  \lineentry{give-take}{Grinnell}
+\lineentry{give-take}{Grinnell}
   \begin{itemize}[noitemsep,rightmargin=0mm,topsep=0pt,leftmargin=.75cm]
     \item User-to-user {\bf file transfer} built for school CS network
     \item Inspired by `give' utility at Los Alamos National Lab
@@ -180,13 +180,22 @@
   \end{itemize}
   \medskip
   
-  \lineentry{ftag}{Personal}
-  \begin{itemize}[noitemsep,rightmargin=0mm,topsep=0pt,leftmargin=.75cm]
-    \item Arbitrary {\bf file tagging} intended for photo libraries
-    \item {\bf Skills}: Rust, databases, \\ argument parsing
-  \end{itemize}
-  \vspace{-15pt} % compensate for the after-paragraph indent
+%   \lineentry{ftag}{Personal}
+%   \begin{itemize}[noitemsep,rightmargin=0mm,topsep=0pt,leftmargin=.75cm]
+%     \item Arbitrary {\bf file tagging} intended for photo libraries
+%     \item {\bf Skills}: Rust, databases, \\ argument parsing
+%   \end{itemize}
+%   \vspace{-15pt} % compensate for the after-paragraph indent
 
+\lineentry{ansible-arch}{Personal}
+  \begin{itemize}[noitemsep,rightmargin=0mm,topsep=0pt,leftmargin=.75cm]
+	  \item Ansible playbook used to provision my laptop
+	  \item \textbf{Skills:} Config Mgmt.
+  \end{itemize}
+  \medskip
+
+
+  You can find these and other projects on my Github above.
 
   % HOBBIES
   %----------------------------------------------------------------------------%
