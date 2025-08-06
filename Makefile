@@ -1,9 +1,9 @@
-all: almondHeil-Resume.pdf
+all: AlmondHeil-Resume.pdf
 
-almondHeil-Resume.pdf: almondHeil-Resume.tex images/cat\ banner.png
+AlmondHeil-Resume.pdf: AlmondHeil-Resume.tex images/cat\ banner.png
 	@mkdir -p aux
-	@pdflatex -output-directory="aux" almondHeil-Resume.tex
-	@mv aux/almondHeil-Resume.pdf .
+	@pdflatex -output-directory="aux" AlmondHeil-Resume.tex
+	@mv aux/AlmondHeil-Resume.pdf .
 
 clean:
-	rm -rf almondHeil-Resume.pdf aux
+	rm -rf AlmondHeil-Resume.pdf aux
